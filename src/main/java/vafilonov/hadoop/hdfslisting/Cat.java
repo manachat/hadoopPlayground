@@ -1,8 +1,9 @@
 package vafilonov.hadoop.hdfslisting;
 
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory;
-import org.apache.hadoop.util.ToolRunner;
+import org.apache.hadoop.io.IOUtils;
 
+import java.io.InputStream;
 import java.net.URL;
 
 public class Cat {
@@ -12,7 +13,14 @@ public class Cat {
     }
 
     public static void main(String[] args) throws Exception {
-        int exit = ToolRunner.run(new CatConfiger(), args);
-        System.exit(exit);
+        InputStream in = null;
+        try {
+            in = new URL(args[0]).openStream();
+            IOUtils.copyBytes(in, System.out, 4096, false);
+        } finally {
+            IOUtils.closeStream(in);
+        }
+        
+        System.exit(0);
     }
 }

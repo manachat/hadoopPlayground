@@ -12,3 +12,5 @@ buildNumber.properties
 .idea
 hadoop-config.xml
 src/main/resources/hadoop-config
+input
+output
