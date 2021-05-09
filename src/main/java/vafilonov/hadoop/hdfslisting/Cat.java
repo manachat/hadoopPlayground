@@ -20,7 +20,7 @@ public class Cat {
         } finally {
             IOUtils.closeStream(in);
         }
-        
+
         System.exit(0);
     }
 }
